@@ -47,6 +47,7 @@ func saveMeta(trackUrl, title, artist, album, albumart string) ([]byte, string, 
 		singleArtist = artist
 	}
 	newFileName := os.TempDir() + "yt-dl-ui/" + SanitizeFilename(singleArtist) + " - " + SanitizeFilename(title) + ".mp3"
+	defer os.Remove(newFileName)
 	os.Rename(trackUrl, newFileName)
 	outFile, err := os.ReadFile(newFileName)
 	if err != nil {

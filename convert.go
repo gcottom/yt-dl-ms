@@ -26,6 +26,10 @@ func convertToMp3(inputFilePath string, title string) (string, error) {
 	if err != nil {
 		return "", err
 	}
+	err = os.Remove(inputFilePath)
+	if err != nil {
+		return "", err
+	}
 	err = os.Chmod(outFile, 0666)
 	if err != nil {
 		return "", err
